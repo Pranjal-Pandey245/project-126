@@ -43,7 +43,7 @@ function draw(){
         music2.stop();
 
 
-    if(song1_status= false){
+    if(song1_status== false){
         music1.play();
         document.getElementById("song_name").innerHTML="harry potter";
     }
