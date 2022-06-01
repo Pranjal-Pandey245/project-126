@@ -8,6 +8,9 @@ rightWristY=0;
 leftWrist_score=0;
 song1_status="";
 
+rightWristScore=0;
+song2_ststus="";
+
 function preload(){
     music1= loadSound("music.mp3");
     music2= loadSound("music2.mp3");
@@ -37,7 +40,7 @@ function draw(){
 
     if(  leftWrist_score> 0.2){
 
-        console.log("started");
+        console.log("music1 started");
 
         circle(leftWristX, leftWristY, 20);
         music2.stop();
@@ -49,6 +52,21 @@ function draw(){
     }
 
     }
+
+
+        song2_ststus= music2.isPlaying();
+        
+        if(rightWristScore>0.2){
+
+            circle(rightWristX, rightWristY, 20);
+            music1.stop();
+
+            if(song2_ststus== false){
+                music2.play();
+                document.getElementById("song_name").innerHTML="Peter Pan";
+            }
+        }
+
 }
 
 function modelLoaded(){
@@ -68,6 +86,9 @@ function gotResults(results){
         console.log("Left Wrist Y- "+ leftWristY);
         console.log("Right Wrist X- "+ rightWristX);
         console.log("Right Wrist Y- "+ rightWristY);
+
+        rightWristScore= results[0].pose.keypoints[10].score;
+        console.log(rightWristScore);
 
         leftWrist_score= results[0].pose.keypoints[9].score;
         console.log(leftWrist_score);
